@@ -4,13 +4,15 @@
 
 TEST_CASE("properties") {
   {
-    std::unordered_set<pqrs::osx::system_preferences::keyboard_type> keyboard_types{
-        pqrs::osx::system_preferences::keyboard_type(
-            pqrs::osx::iokit_hid_vendor_id(1),
-            pqrs::osx::iokit_hid_product_id(2),
-            pqrs::osx::iokit_hid_country_code(3),
-            pqrs::osx::iokit_keyboard_type(4)),
-    };
+    using keyboard_types_t = std::unordered_map<pqrs::osx::system_preferences::keyboard_type_key,
+                                                pqrs::osx::iokit_keyboard_type>;
+
+    pqrs::osx::system_preferences::keyboard_type_key keyboard_type_key(
+        pqrs::osx::iokit_hid_vendor_id(1),
+        pqrs::osx::iokit_hid_product_id(2),
+        pqrs::osx::iokit_hid_country_code(3));
+    keyboard_types_t keyboard_types;
+    keyboard_types[keyboard_type_key] = pqrs::osx::iokit_keyboard_type(4);
 
     pqrs::osx::system_preferences::properties p1;
     p1.set_use_fkeys_as_standard_function_keys(true);
@@ -31,7 +33,7 @@ TEST_CASE("properties") {
     REQUIRE(p1 != p2);
 
     p2 = p1;
-    p2.set_keyboard_types(std::unordered_set<pqrs::osx::system_preferences::keyboard_type>());
+    p2.set_keyboard_types(keyboard_types_t());
     REQUIRE(p1 != p2);
   }
 }
