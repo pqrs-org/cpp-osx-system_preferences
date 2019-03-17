@@ -68,9 +68,15 @@ TEST_CASE("keyboard_type") {
                          pqrs::osx::iokit_hid_country_code(4));
     REQUIRE(v1 < v2);
   }
-
-  // operator>
-
+  {
+    keyboard_type_key v1(pqrs::osx::iokit_hid_vendor_id(1),
+                         pqrs::osx::iokit_hid_product_id(2),
+                         pqrs::osx::iokit_hid_country_code(3));
+    keyboard_type_key v2(pqrs::osx::iokit_hid_vendor_id(1),
+                         pqrs::osx::iokit_hid_product_id(2),
+                         pqrs::osx::iokit_hid_country_code(3));
+    REQUIRE(!(v1 < v2));
+  }
   {
     keyboard_type_key v1(pqrs::osx::iokit_hid_vendor_id(3),
                          pqrs::osx::iokit_hid_product_id(2),
@@ -78,7 +84,7 @@ TEST_CASE("keyboard_type") {
     keyboard_type_key v2(pqrs::osx::iokit_hid_vendor_id(1),
                          pqrs::osx::iokit_hid_product_id(2),
                          pqrs::osx::iokit_hid_country_code(3));
-    REQUIRE(v1 > v2);
+    REQUIRE(!(v1 < v2));
   }
   {
     keyboard_type_key v1(pqrs::osx::iokit_hid_vendor_id(3),
@@ -87,7 +93,7 @@ TEST_CASE("keyboard_type") {
     keyboard_type_key v2(pqrs::osx::iokit_hid_vendor_id(3),
                          pqrs::osx::iokit_hid_product_id(1),
                          pqrs::osx::iokit_hid_country_code(2));
-    REQUIRE(v1 > v2);
+    REQUIRE(!(v1 < v2));
   }
   {
     keyboard_type_key v1(pqrs::osx::iokit_hid_vendor_id(3),
@@ -96,7 +102,7 @@ TEST_CASE("keyboard_type") {
     keyboard_type_key v2(pqrs::osx::iokit_hid_vendor_id(3),
                          pqrs::osx::iokit_hid_product_id(2),
                          pqrs::osx::iokit_hid_country_code(0));
-    REQUIRE(v1 > v2);
+    REQUIRE(!(v1 < v2));
   }
 
   // hash
