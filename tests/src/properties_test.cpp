@@ -1,11 +1,12 @@
 #include <catch2/catch.hpp>
 
 #include <pqrs/osx/system_preferences.hpp>
+#include <unordered_set>
 
 TEST_CASE("properties") {
   {
-    using keyboard_types_t = std::unordered_map<pqrs::osx::system_preferences::keyboard_type_key,
-                                                pqrs::osx::iokit_keyboard_type>;
+    using keyboard_types_t = std::map<pqrs::osx::system_preferences::keyboard_type_key,
+                                      pqrs::osx::iokit_keyboard_type>;
 
     pqrs::osx::system_preferences::keyboard_type_key keyboard_type_key(
         pqrs::osx::iokit_hid_vendor_id(1),
@@ -35,5 +36,12 @@ TEST_CASE("properties") {
     p2 = p1;
     p2.set_keyboard_types(keyboard_types_t());
     REQUIRE(p1 != p2);
+  }
+
+  // hash
+
+  {
+    std::unordered_set<pqrs::osx::system_preferences::properties> set;
+    set.insert(pqrs::osx::system_preferences::properties());
   }
 }

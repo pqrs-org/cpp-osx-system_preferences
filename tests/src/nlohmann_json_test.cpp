@@ -78,8 +78,8 @@ TEST_CASE("nlohmann_json keyboard_type") {
 
 TEST_CASE("nlohmann_json properties") {
   {
-    using keyboard_types_t = std::unordered_map<pqrs::osx::system_preferences::keyboard_type_key,
-                                                pqrs::osx::iokit_keyboard_type>;
+    using keyboard_types_t = std::map<pqrs::osx::system_preferences::keyboard_type_key,
+                                      pqrs::osx::iokit_keyboard_type>;
 
     pqrs::osx::system_preferences::keyboard_type_key keyboard_type_key(
         pqrs::osx::iokit_hid_vendor_id(1),
