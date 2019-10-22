@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/pqrs-org/cpp-osx-system_preferences.svg?branch=master)](https://travis-ci.com/pqrs-org/cpp-osx-system_preferences)
+[![Build Status](https://github.com/pqrs-org/cpp-osx-system_preferences/workflows/CI/badge.svg)](https://github.com/pqrs-org/cpp-osx-system_preferences/actions)
 [![License](https://img.shields.io/badge/license-Boost%20Software%20License-blue.svg)](https://github.com/pqrs-org/cpp-osx-system_preferences/blob/master/LICENSE.md)
 
 # cpp-osx-system_preferences
