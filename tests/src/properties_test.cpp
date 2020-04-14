@@ -6,14 +6,14 @@
 TEST_CASE("properties") {
   {
     using keyboard_types_t = std::map<pqrs::osx::system_preferences::keyboard_type_key,
-                                      pqrs::osx::iokit_keyboard_type>;
+                                      pqrs::osx::iokit_keyboard_type::value_t>;
 
     pqrs::osx::system_preferences::keyboard_type_key keyboard_type_key(
-        pqrs::osx::iokit_hid_vendor_id(1),
-        pqrs::osx::iokit_hid_product_id(2),
-        pqrs::osx::iokit_hid_country_code(3));
+        pqrs::osx::iokit_hid_vendor_id::value_t(1),
+        pqrs::osx::iokit_hid_product_id::value_t(2),
+        pqrs::osx::iokit_hid_country_code::value_t(3));
     keyboard_types_t keyboard_types;
-    keyboard_types[keyboard_type_key] = pqrs::osx::iokit_keyboard_type(4);
+    keyboard_types[keyboard_type_key] = pqrs::osx::iokit_keyboard_type::value_t(4);
 
     pqrs::osx::system_preferences::properties p1;
     p1.set_use_fkeys_as_standard_function_keys(true);
