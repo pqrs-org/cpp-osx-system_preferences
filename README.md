@@ -12,6 +12,7 @@ cpp-osx-system_preferences depends the following classes.
 - [pqrs::cf::number](https://github.com/pqrs-org/cpp-cf-number)
 - [pqrs::cf::string](https://github.com/pqrs-org/cpp-cf-string)
 - [pqrs::hash](https://github.com/pqrs-org/cpp-hash)
+- [pqrs::hid](https://github.com/pqrs-org/cpp-hid)
 - [pqrs::osx::iokit_types](https://github.com/pqrs-org/cpp-osx-iokit_types)
 
 ## Install

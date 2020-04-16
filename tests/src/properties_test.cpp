@@ -9,9 +9,9 @@ TEST_CASE("properties") {
                                       pqrs::osx::iokit_keyboard_type::value_t>;
 
     pqrs::osx::system_preferences::keyboard_type_key keyboard_type_key(
-        pqrs::osx::iokit_hid_vendor_id::value_t(1),
-        pqrs::osx::iokit_hid_product_id::value_t(2),
-        pqrs::osx::iokit_hid_country_code::value_t(3));
+        pqrs::hid::vendor_id::value_t(1),
+        pqrs::hid::product_id::value_t(2),
+        pqrs::hid::country_code::value_t(3));
     keyboard_types_t keyboard_types;
     keyboard_types[keyboard_type_key] = pqrs::osx::iokit_keyboard_type::value_t(4);
 
