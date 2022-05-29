@@ -13,10 +13,6 @@ project (test)
 
 add_executable(
   test
-  boost_test.cpp
-  keyboard_type_test.cpp
-  nlohmann_json_test.cpp
-  properties_test.cpp
   test.cpp
 )
 
