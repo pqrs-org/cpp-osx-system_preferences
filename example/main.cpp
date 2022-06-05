@@ -23,5 +23,12 @@ int main(void) {
     std::cout << std::endl;
   }
 
+#if 0
+  pqrs::osx::system_preferences::user_defaults::set_keyboard_type(pqrs::hid::product_id::value_t(10203),
+                                                                  pqrs::hid::vendor_id::value_t(5824),
+                                                                  pqrs::hid::country_code::value_t(0),
+                                                                  pqrs::osx::iokit_keyboard_type::ansi);
+#endif
+
   return 0;
 }
