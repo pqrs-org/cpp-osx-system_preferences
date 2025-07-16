@@ -22,4 +22,5 @@ add_executable(
 target_link_libraries(
   test
   "-framework CoreFoundation"
+  "-framework IOKit"
 )

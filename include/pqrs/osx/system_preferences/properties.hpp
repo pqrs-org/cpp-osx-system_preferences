@@ -5,6 +5,7 @@
 // (See https://www.boost.org/LICENSE_1_0.txt)
 
 #include "system_preferences.hpp"
+#include <IOKit/IOKitLib.h>
 #include <map>
 #include <pqrs/cf/string.hpp>
 #include <pqrs/hash.hpp>
@@ -36,14 +37,42 @@ public:
   }
 
   void update(void) {
+    //
     // use_fkeys_as_standard_function_keys_
+    //
 
-    if (auto value = find_app_bool_property(CFSTR("com.apple.keyboard.fnState"),
-                                            CFSTR("Apple Global Domain"))) {
-      use_fkeys_as_standard_function_keys_ = *value;
+    // The setting is saved in `com.apple.keyboard.fnState` under `Apple Global Domain`.
+    // However, retrieving data using CFPreferencesCopyAppValue can result in issues,
+    // such as returning no value for guest users.
+    //
+    // Therefore, instead of retrieving the setting from CFPreferences,
+    // we'll get it from the corresponding parameter in IOHIDSystem, which stays in sync with that setting.
+
+    if (auto entry = IORegistryEntryFromPath(kIOMainPortDefault,
+                                             "IOService:/IOResources/IOHIDSystem")) {
+      if (auto property = IORegistryEntryCreateCFProperty(entry,
+                                                          CFSTR("HIDParameters"),
+                                                          kCFAllocatorDefault,
+                                                          0)) {
+        if (CFDictionaryGetTypeID() == CFGetTypeID(property)) {
+          auto dict = static_cast<CFDictionaryRef>(property);
+          if (auto value = pqrs::cf::make_number<int32_t>(CFDictionaryGetValue(dict, CFSTR("HIDFKeyMode")))) {
+            use_fkeys_as_standard_function_keys_ = *value;
+          }
+        }
+
+        CFRelease(property);
+      }
+
+      IOObjectRelease(entry);
     }
 
+    //
     // scroll_direction_is_natural_
+    //
+
+    // Since this setting isn't mirrored in IOHIDSystem, we'll retrieve it from CFPreferences instead.
+    // Because it's a per-user setting, it can be accessed from CFPreferences without issues.
 
     if (auto value = find_app_bool_property(CFSTR("com.apple.swipescrolldirection"),
                                             CFSTR("Apple Global Domain"))) {
