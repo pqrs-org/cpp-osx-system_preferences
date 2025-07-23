@@ -6,5 +6,6 @@
 // Distributed under the Boost Software License, Version 1.0.
 // (See https://www.boost.org/LICENSE_1_0.txt)
 
+#include "system_preferences/modifier_mappings.hpp"
 #include "system_preferences/properties.hpp"
 #include "system_preferences/system_preferences.hpp"
