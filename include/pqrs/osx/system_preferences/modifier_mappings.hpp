@@ -24,6 +24,7 @@ struct modifier_mapping {
 [[nodiscard]] inline std::vector<modifier_mapping> get_modifier_mappings(CFDictionaryRef _Nonnull matching_dictionary) {
   std::vector<modifier_mapping> result;
 
+  // IOServiceGetMatchingService consumes one reference to the matching dictionary.
   CFRetain(matching_dictionary);
   if (auto service = adopt_iokit_object_ptr(IOServiceGetMatchingService(type_safe::get(iokit_mach_port::null),
                                                                         matching_dictionary))) {
