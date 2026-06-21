@@ -18,7 +18,7 @@ void exception_test(const nlohmann::json& json, const std::string_view& what) {
 }
 } // namespace
 
-void run_nlohmann_json_test(void) {
+void run_nlohmann_json_test() {
   using namespace boost::ut;
   using namespace boost::ut::literals;
 

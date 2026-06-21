@@ -3,7 +3,7 @@
 #include <pqrs/osx/system_preferences.hpp>
 #include <string>
 
-int main(void) {
+int main() {
   pqrs::osx::system_preferences::properties properties;
   properties.update();
 

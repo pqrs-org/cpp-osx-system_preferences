@@ -2,11 +2,18 @@
 #include <pqrs/osx/system_preferences.hpp>
 #include <unordered_set>
 
-void run_properties_test(void) {
+void run_properties_test() {
   using namespace boost::ut;
   using namespace boost::ut::literals;
 
   "properties"_test = [] {
+    {
+      pqrs::osx::system_preferences::properties p;
+
+      expect(p.get_use_fkeys_as_standard_function_keys() == false);
+      expect(p.get_scroll_direction_is_natural() == true);
+    }
+
     {
       pqrs::osx::system_preferences::properties p1;
       p1.set_use_fkeys_as_standard_function_keys(true);
@@ -30,7 +37,7 @@ void run_properties_test(void) {
 
     {
       std::unordered_set<pqrs::osx::system_preferences::properties> set;
-      set.insert(pqrs::osx::system_preferences::properties());
+      set.insert(pqrs::osx::system_preferences::properties{});
     }
   };
 }
