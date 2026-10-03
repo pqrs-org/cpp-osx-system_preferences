@@ -15,8 +15,6 @@
 namespace pqrs::osx::system_preferences {
 class properties final {
 public:
-  properties() noexcept = default;
-
   [[nodiscard]] bool get_use_fkeys_as_standard_function_keys() const noexcept {
     return use_fkeys_as_standard_function_keys_;
   }
